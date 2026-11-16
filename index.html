@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Clinical Safety Workspace</title>
+<style>
+:root{--ink:#172b3a;--muted:#617383;--line:#dce5e9;--bg:#f4f7f8;--panel:#fff;--teal:#087f8c;--teal2:#e7f5f5;--nav:#102d3d;--red:#a33b3b;--amber:#93620b;--green:#28734b;--shadow:0 8px 24px #17384a12}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial}button,input,textarea,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:white;color:var(--ink);border-radius:8px;padding:9px 13px;font-weight:600}button.primary{background:var(--teal);border-color:var(--teal);color:white}button.danger{color:var(--red)}button:disabled{opacity:.45;cursor:not-allowed}.app{min-height:100vh}.top{background:var(--nav);color:white;padding:17px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:18px;font-weight:750;letter-spacing:.1px}.brand small{display:block;font-size:11px;color:#a9c2ce;font-weight:500}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.top button{background:#214354;color:white;border-color:#416071}.top button.primary{background:#12a0a4;border-color:#12a0a4}.layout{display:grid;grid-template-columns:235px minmax(0,1fr);max-width:1500px;margin:auto;min-height:calc(100vh - 70px)}aside{background:#fff;border-right:1px solid var(--line);padding:22px 14px}.navlabel{font-size:10px;color:#81919b;font-weight:800;letter-spacing:1.1px;padding:10px 12px 6px}.nav button{display:flex;width:100%;text-align:left;gap:10px;align-items:center;border:0;background:transparent;padding:11px 12px;margin:2px 0;color:#4b6070}.nav button.active{background:var(--teal2);color:#075e68;font-weight:750}.nav .count{margin-left:auto;background:#edf2f4;border-radius:20px;padding:1px 8px;font-size:11px}.saveinfo{margin:25px 9px 0;padding:12px;background:#f5f8f9;border-radius:9px;color:var(--muted);font-size:11px}.main{padding:28px;min-width:0}.pagehead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:22px}.eyebrow{color:var(--teal);font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase}.pagehead h1{font-size:25px;line-height:1.2;margin:4px 0 6px}.sub{color:var(--muted);max-width:760px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:18px}.stat,.panel,.editor,.record{background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}.stat{padding:16px}.stat strong{display:block;font-size:26px}.stat span{color:var(--muted);font-size:12px}.panel{padding:19px;margin-bottom:16px}.panel h2,.panel h3{margin:0 0 12px}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.panelhead h2{margin:0}.hint{color:var(--muted);font-size:12px}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.search{width:min(360px,100%);padding:10px 12px;border:1px solid var(--line);border-radius:8px}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:700px}th{text-align:left;color:#657987;font-size:11px;text-transform:uppercase;letter-spacing:.5px;background:#f7f9fa}th,td{padding:12px 11px;border-bottom:1px solid #e9eef0;vertical-align:top}td:first-child{font-weight:750;white-space:nowrap}tr:last-child td{border-bottom:0}.clickrow{cursor:pointer}.clickrow:hover{background:#f7fbfb}.risk{display:inline-block;border-radius:20px;padding:3px 9px;font-size:11px;font-weight:750;background:#eef2f4;color:#405360;white-space:nowrap}.risk.Undesirable,.risk.Intolerable{background:#fceaea;color:#963737}.risk.Tolerable{background:#fff3d9;color:#815600}.risk.Acceptable{background:#e8f5ed;color:#246b45}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin:0 0 14px}.field label{display:block;font-size:12px;font-weight:750;margin-bottom:5px;color:#425867}.field input,.field textarea,.field select{width:100%;border:1px solid #cfdbe0;border-radius:8px;padding:10px 11px;background:#fff;color:var(--ink)}.field textarea{min-height:100px;resize:vertical}.field textarea.tall{min-height:160px}.field input:focus,.field textarea:focus,.field select:focus{outline:2px solid #9ad4d7;border-color:var(--teal)}.editor{padding:20px;margin-bottom:15px}.editor h2{font-size:18px;margin:0 0 16px}.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;max-height:190px;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:10px}.checks label{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#405360}.checks input{width:auto;margin-top:3px}.recordlist{display:grid;gap:8px}.record{padding:13px 15px;display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer}.record:hover{border-color:#8fc9cc}.record strong{display:block}.record small{color:var(--muted)}.empty{padding:28px;text-align:center;color:var(--muted)}.reportpreview{background:white;border:1px solid var(--line);border-radius:10px;padding:28px;max-width:950px;margin:auto;box-shadow:var(--shadow)}.reportpreview h1{font-size:25px}.dochead{text-align:center;border-bottom:3px solid #087f8c;padding-bottom:18px;margin-bottom:22px}.reportpreview table{min-width:0}.reportpreview td{overflow-wrap:anywhere}.reportpreview li{margin:4px 0}.reportpreview h2{font-size:18px;border-bottom:2px solid #d9e5e8;padding-bottom:6px;margin-top:28px}.reportpreview h3{font-size:15px;margin-bottom:5px}.reportpreview p{white-space:pre-wrap}.reporthazard{padding:12px 0;border-bottom:1px solid #e3eaed;break-inside:avoid}.reporthazard ul{margin:5px 0 8px;padding-left:20px}.notice{padding:12px 14px;border-radius:8px;background:#fff7e6;color:#74510c;border:1px solid #f1dfb4;margin-bottom:15px}.footer{color:var(--muted);font-size:11px;text-align:center;padding:20px}.hidden{display:none!important}.badge{display:inline-flex;gap:5px;align-items:center;font-size:11px;color:var(--green);font-weight:700}.modalback{position:fixed;inset:0;background:#0b1e2b88;display:flex;align-items:center;justify-content:center;padding:20px;z-index:5}.modal{background:white;border-radius:13px;padding:22px;width:min(650px,100%);max-height:90vh;overflow:auto}.modal h2{margin-top:0}.toast{position:fixed;bottom:20px;right:20px;background:#173b4b;color:white;padding:12px 16px;border-radius:8px;box-shadow:var(--shadow);z-index:9}
+@media(max-width:850px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line);padding:8px;position:sticky;top:0;z-index:3}.nav{display:flex;overflow:auto}.navlabel,.saveinfo{display:none}.nav button{white-space:nowrap;width:auto}.main{padding:17px}.stats{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.top{padding:14px;align-items:flex-start}.top-actions{justify-content:flex-end}.pagehead{flex-direction:column}}
+@media print{body{background:white;font-size:10pt}.reportpreview{max-width:none}.reportpreview table{font-size:9pt}.reportpreview th,.reportpreview td{padding:5px}.reportpreview h2{break-after:avoid}.reporthazard{break-inside:avoid}.top,aside,.pagehead,.no-print,.footer{display:none!important}.layout{display:block}.main{padding:0}.reportpreview{border:0;box-shadow:none;padding:0;max-width:none}.reportpreview h2{break-after:avoid}.reporthazard{break-inside:avoid}.reportpreview table{min-width:0}.reportpreview th,.reportpreview td{padding:5px;border:1px solid #bbb}}
+#caseReportPreview p{white-space:pre-wrap}</style><base target="_blank">
+</head><body><div class="app"><header class="top"><div class="brand">Clinical Safety Workspace<small>DCB0160 · hazard log & safety case builder</small></div><div class="top-actions"><span class="badge" style="color:#b9e7d0">● Local autosave</span><button onclick="newBlankProject()">New blank project</button><button onclick="exportJSON()">Export project</button><button onclick="document.getElementById('fileIn').click()">Import JSON</button><button class="primary" onclick="show('hazSummary')">Build reports</button><input id="fileIn" type="file" accept="application/json,.json" hidden onchange="importJSON(event)"></div></header>
+<div class="layout"><aside><div class="navlabel">WORKSPACE</div><nav class="nav" id="nav"><button data-page="overview" class="active" onclick="show('overview')">▦ Overview</button><button data-page="hazards" onclick="show('hazards')">⚠ Hazards <span class="count" id="hazCount">0</span></button><button data-page="causes" onclick="show('causes')">⌁ Causes <span class="count" id="causeCount">0</span></button><button data-page="mitigations" onclick="show('mitigations')">✓ Mitigations <span class="count" id="mitCount">0</span></button><button data-page="impacts" onclick="show('impacts')">✚ Impacts <span class="count" id="impactCount">0</span></button><button data-page="compliance" onclick="show('compliance')">☑ Compliance checklist <span class="count" id="compCount">0/8</span></button><button data-page="project" onclick="show('project')">⚙ Project details</button><button data-page="hazSummary" onclick="show('hazSummary')">▤ Hazard summary</button><button data-page="caseReport" onclick="show('caseReport')">▤ Safety case report</button><button data-page="hazLog" onclick="show('hazLog')">▤ Full hazard log</button></nav><div class="saveinfo"><strong>Private to this browser</strong><br>Changes are saved automatically on this device. Export a backup regularly and before clearing browser data.</div></aside>
+<main class="main"><section id="page-overview"><div class="pagehead"><div><div class="eyebrow">Workspace</div><h1 id="welcome">Untitled project</h1><div class="sub">Your hazard log, linked causes, mitigations and impacts in one place. Edit records here and generate a report from the same saved project.</div></div><div class="toolbar"><button class="primary" onclick="newRecord('hazard')">＋ Add hazard</button></div></div><div class="stats"><div class="stat"><strong id="sHaz">0</strong><span>Hazards recorded</span></div><div class="stat"><strong id="sMit">0</strong><span>Mitigations recorded</span></div><div class="stat"><strong id="sUnd">0</strong><span>Undesirable / intolerable risks</span></div><div class="stat"><strong id="sMissing">0</strong><span>Unlinked references</span></div></div><div class="notice"><strong>Important:</strong> This is a documentation aid, not a clinical safety approval system. Risk ratings, hazard wording, controls and report statements must be reviewed and approved by your Clinical Safety Officer. It does not determine compliance with DCB0160.</div><div class="panel"><div class="panelhead"><h2>Highest-rated hazards</h2><button onclick="show('hazards')">View all hazards →</button></div><div id="topHazards"></div></div><div class="panel"><h2>Project completeness</h2><div class="hint">These checks help identify gaps; they do not constitute a formal assurance decision.</div><div id="checks" style="margin-top:12px"></div></div></section>
+<section id="page-hazards" class="hidden"><div class="pagehead"><div><div class="eyebrow">Risk register</div><h1>Hazards</h1><div class="sub">Record each hazardous situation and link it to causes, mitigations and impacts.</div></div><div class="toolbar"><button onclick="csvTemplate('hazard')">CSV template</button><button onclick="csvPick('hazard')">⬆ Import CSV</button><button class="primary" onclick="newRecord('hazard')">＋ Add hazard</button></div></div><div class="panel"><div class="panelhead"><input class="search" id="hazSearch" placeholder="Search hazards…" oninput="renderList('hazards')"><span class="hint">Select a row to edit</span></div><div id="hazList" class="tablewrap"></div></div><div id="hazEditor"></div></section>
+<section id="page-causes" class="hidden"><div class="pagehead"><div><div class="eyebrow">Risk register</div><h1>Causes</h1><div class="sub">Causes describe how each hazard could arise. Link mitigations that address the cause.</div></div><div class="toolbar"><button onclick="csvTemplate('cause')">CSV template</button><button onclick="csvPick('cause')">⬆ Import CSV</button><button class="primary" onclick="newRecord('cause')">＋ Add cause</button></div></div><div class="panel"><div class="panelhead"><input class="search" id="causeSearch" placeholder="Search causes…" oninput="renderList('causes')"></div><div id="causeList" class="recordlist"></div></div><div id="causeEditor"></div></section>
+<section id="page-mitigations" class="hidden"><div class="pagehead"><div><div class="eyebrow">Risk controls</div><h1>Mitigations</h1><div class="sub">Document practice-level controls and link them to relevant hazards and causes.</div></div><div class="toolbar"><button onclick="csvTemplate('mitigation')">CSV template</button><button onclick="csvPick('mitigation')">⬆ Import CSV</button><button class="primary" onclick="newRecord('mitigation')">＋ Add mitigation</button></div></div><div class="panel"><div class="panelhead"><input class="search" id="mitSearch" placeholder="Search mitigations…" oninput="renderList('mitigations')"></div><div id="mitigationsList" class="recordlist"></div></div><div id="mitigationEditor"></div></section>
+<section id="page-impacts" class="hidden"><div class="pagehead"><div><div class="eyebrow">Risk register</div><h1>Impacts</h1><div class="sub">Record potential patient, staff, service or information impacts and their severity.</div></div><div class="toolbar"><button onclick="csvTemplate('impact')">CSV template</button><button onclick="csvPick('impact')">⬆ Import CSV</button><button class="primary" onclick="newRecord('impact')">＋ Add impact</button></div></div><div class="panel"><div class="panelhead"><input class="search" id="impactSearch" placeholder="Search impacts…" oninput="renderList('impacts')"></div><div id="impactsList" class="recordlist"></div></div><div id="impactEditor"></div></section>
+<section id="page-compliance" class="hidden"><div class="pagehead"><div><div class="eyebrow">Supplier assurance</div><h1>Compliance checklist</h1><div class="sub">Record the vendor evidence you have requested and reviewed. This feeds the Clinical Safety Case Report, Hazard Summary and Full Hazard Log.</div></div></div><div class="notice">Before signing a contract, ask the supplier for each document below and sanity-check it yourself. Changes save automatically.</div><div id="compBody"></div></section>
+
+<section id="page-project" class="hidden"><div class="pagehead"><div><div class="eyebrow">Configuration</div><h1>Project details</h1><div class="sub">Project identity and system description appear in the generated report.</div></div></div><div class="editor"><h2>Project information</h2><div class="field"><label>Project / system name</label><input id="pTitle"></div><div class="field"><label>Clinical Safety Officer</label><input id="pCSO" placeholder="Enter the named CSO"></div><div class="field"><label>System description</label><textarea class="tall" id="pDesc"></textarea></div><div class="toolbar"><button class="primary" onclick="saveProject()">Save project details</button></div></div><div class="editor"><h2>Clinical Safety Case Report inputs</h2><p class="hint">Complete the local governance and assurance information below. The app will not invent missing organisational facts.</p><div id="reportInputs"></div><button class="primary" onclick="saveReportInputs()">Save report inputs</button></div></section>
+
+<section id="page-hazSummary" class="hidden">
+ <div class="pagehead no-print"><div><div class="eyebrow">Output 1 of 3</div><h1>Hazard Summary Report</h1><div class="sub">Matches the supplied report structure: hazard summary, mitigation summary and detailed hazard-by-hazard analysis.</div></div><div class="toolbar"><button onclick="show('project')">Edit project details</button><button class="primary" onclick="printOutput('hazSummary')">Print / Save as PDF</button></div></div>
+ <div class="notice no-print">The report is generated from the current hazard register. Check the content and risk ratings before issue.</div><div id="hazSummaryPreview" class="reportpreview"></div>
+</section>
+<section id="page-caseReport" class="hidden">
+ <div class="pagehead no-print"><div><div class="eyebrow">Output 2 of 3</div><h1>Clinical Safety Case Report</h1><div class="sub">Follows a seven-section DCB0160-aligned structure, from introduction through to the clinical safety conclusion.</div></div><div class="toolbar"><button onclick="show('project')">Edit report inputs</button><button class="primary" onclick="printOutput('caseReport')">Print / Save as PDF</button></div></div>
+ <div class="notice no-print">Local governance, vendor review and approval details are not inferred. Complete the report inputs before finalising this document.</div><div id="caseReportPreview" class="reportpreview"></div>
+</section>
+<section id="page-hazLog" class="hidden">
+ <div class="pagehead no-print"><div><div class="eyebrow">Output 3 of 3</div><h1>Full Hazard Log</h1><div class="sub">A consolidated register of hazards, causes, mitigations, impacts, links and risk assessments.</div></div><div class="toolbar"><button onclick="show('hazards')">Edit hazard register</button><button class="primary" onclick="printOutput('hazLog')">Print / Save as PDF</button><button onclick="exportHazardCSV()">Export CSV</button></div></div>
+ <div class="notice no-print">This is the detailed working register. Changes made in the workspace are reflected here when the output is regenerated.</div><div id="hazLogPreview" class="reportpreview"></div>
+</section>
+<div class="footer">Clinical Safety Workspace · Data stays in this browser unless you export it. Make and store backups securely.</div></main></div></div><div id="modalRoot"></div><script>
+const STARTER={"project": {"title": "Untitled project", "description": "", "safetyOfficer": "", "compliance": {"items": {}, "signOff": false, "signOffDate": "", "signOffBy": ""}, "hazards": []}, "causes": [], "mitigations": [], "impacts": []};
+const INPUTS=[
+['introduction','1. Introduction','This report outlines the clinical safety activities and risk-management outputs.'],
+['purpose','2. Purpose','Report on clinical hazards and summarise the current risk profile and any unresolved areas.'],
+['extraDocs','Additional system documentation','Optional: note any further clinical safety or supplier documentation for this system, and where it is held.'],
+['vendorReview','Vendor compliance review','Record the review status and any evidence/reference.'],
+['governance','Local clinical safety governance and responsibilities','Named CSO, review arrangements, responsibilities and escalation.'],
+['riskManagement','Risk assessment and mitigation narrative','Describe how local workflow controls, staff training, role allocation and appropriate use manage the identified risks.'],
+['conclusion','7. Clinical Safety Case Report conclusion','Record whether implementation is recommended by the CSO, subject to mitigations being enacted. Do not mark approved until reviewed.'],
+['section8','Section 8 / additional case report content','Add any additional content required by your local template or governance process.'],
+['residualRisk','Residual risk and acceptance rationale','CSO review of residual risks and rationale for acceptance or further action.'],
+['actions','Outstanding safety actions','Actions, owner, target date and status.'],
+['approval','Clinical safety approval / sign-off','Named approver, role, date and approval status.']
+];
+let db=JSON.parse(JSON.stringify(STARTER)), current={type:null,id:null};let reportInputs={};let saveTimer;
+const $=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function normalise(d){if(!d||!d.project)throw Error('JSON must contain a project object');d.project.hazards??=[];for(const k of ['causes','mitigations','impacts'])d[k]??=[];d.project.title??='Untitled project';d.project.description??='';d.project.safetyOfficer??='';d.project.compliance??={};d.project.compliance.items??={};for(const h of d.project.hazards){h.causeIds??=[];h.mitigationIds??=[];h.impactIds??=[];h.hazardImpacts??=[];}return d}
+function persist(){try{localStorage.setItem('clinicalSafetyWorkspace_v1',JSON.stringify({db,reportInputs}));$('saveState')?.replaceChildren();}catch(e){toast('Autosave failed. Export a JSON backup.');}}
+function load(){try{let x=JSON.parse(localStorage.getItem('clinicalSafetyWorkspace_v1'));if(x?.db){db=normalise(x.db);reportInputs=x.reportInputs||{};}}catch(e){console.warn(e)}}
+function toast(s){let t=document.createElement('div');t.className='toast';t.textContent=s;document.body.append(t);setTimeout(()=>t.remove(),2600)}
+function clearEditors(){['hazEditor','causeEditor','mitigationEditor','impactEditor'].forEach(id=>{const el=$(id);if(el)el.innerHTML='';});}
+function show(p){clearEditors();document.querySelectorAll('main>section').forEach(x=>x.classList.add('hidden'));$('page-'+p).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));if(p==='overview')renderOverview();if(p==='hazards')renderList('hazards');if(p==='causes')renderList('causes');if(p==='mitigations')renderList('mitigations');if(p==='impacts')renderList('impacts');if(p==='project')renderProject();if(p==='compliance')renderCompliance();if(p==='hazSummary')renderHazardSummary();if(p==='caseReport')renderCaseReport();if(p==='hazLog')renderHazardLog();window.scrollTo(0,0)}
+function all(type){const m={hazard:'hazards',cause:'causes',mitigation:'mitigations',impact:'impacts'};type=m[type]||type;if(type==='hazards')return db.project.hazards=db.project.hazards||[];return db[type]=db[type]||[]}function refName(type,id){return all(type).find(x=>x.id===id)}function label(x){return x.id+' · '+x.description}
+function countMissing(){let n=0;for(const h of db.project.hazards){for(const [t,ids] of [['causes',h.causeIds],['mitigations',h.mitigationIds],['impacts',h.impactIds]])for(const id of ids||[])if(!refName(t,id))n++;for(const x of h.hazardImpacts||[])if(!refName('impacts',x.impactID))n++;}return n}
+function renderOverview(){let hs=db.project.hazards,und=hs.filter(h=>['Undesirable','Intolerable'].includes(h.riskLevel)).length;$('welcome').textContent=db.project.title||'Untitled project';$('sHaz').textContent=hs.length;$('sMit').textContent=db.mitigations.length;$('sUnd').textContent=und;$('sMissing').textContent=countMissing();$('hazCount').textContent=hs.length;$('causeCount').textContent=db.causes.length;$('mitCount').textContent=db.mitigations.length;$('impactCount').textContent=db.impacts.length;updateCompCount();let rank={Intolerable:0,Undesirable:1,Tolerable:2,Acceptable:3};let sorted=[...hs].sort((a,b)=>(rank[a.riskLevel]??4)-(rank[b.riskLevel]??4));$('topHazards').innerHTML=sorted.slice(0,6).map(h=>`<div class="record" onclick="show('hazards');edit('hazard','${esc(h.id)}')"><div><strong>H${esc(h.id)} · ${esc(h.description)}</strong><small>${(h.causeIds||[]).length} causes · ${(h.mitigationIds||[]).length} mitigations · ${(h.impactIds||[]).length} impacts</small></div><span class="risk ${esc(h.riskLevel||'')}">${esc(h.riskLevel||'Not rated')}</span></div>`).join('')||'<div class="empty">No hazards yet.</div>';$('checks').innerHTML=[['Project title',!!db.project.title],['System description',!!db.project.description],['Named Clinical Safety Officer',!!db.project.safetyOfficer],['Hazards recorded',hs.length>0],['Every hazard has a cause',hs.every(h=>(h.causeIds||[]).length)],['Every hazard has an impact',hs.every(h=>(h.impactIds||[]).length)],['Every hazard has a mitigation',hs.every(h=>(h.mitigationIds||[]).length)],['Vendor minimum essential requirements reviewed',compEssentialDone()===COMPLIANCE.filter(c=>c.sec==='essential').length],['Vendor compliance review signed off',!!comp().signOff],['No broken references',countMissing()===0]].map(([s,ok])=>`<div style="padding:7px 0;border-bottom:1px solid #edf1f2"><span style="color:${ok?'#28734b':'#a36a12'}">${ok?'✓':'○'}</span> &nbsp;${esc(s)}</div>`).join('')}
+function renderList(type){let key=type==='hazards'?'hazards':type==='causes'?'causes':type==='mitigations'?'mitigations':'impacts';let dest=type==='hazards'?'hazList':type==='causes'?'causeList':type==='mitigations'?'mitigationsList':'impactsList';let search=$(type==='hazards'?'hazSearch':type==='causes'?'causeSearch':type==='mitigations'?'mitSearch':'impactSearch')?.value?.toLowerCase()||'';let items=all(type).filter(x=>(x.id+' '+x.description).toLowerCase().includes(search));if(type==='hazards'){$(dest).innerHTML=`<table><thead><tr><th>ID</th><th>Hazard</th><th>Causes</th><th>Mitigations</th><th>Impact</th><th>Risk</th></tr></thead><tbody>${items.map(h=>`<tr class="clickrow" onclick="edit('hazard','${esc(h.id)}')"><td>H${esc(h.id)}</td><td>${esc(h.description)}</td><td>${(h.causeIds||[]).length}</td><td>${(h.mitigationIds||[]).length}</td><td>${(h.impactIds||[]).length}</td><td><span class="risk ${esc(h.riskLevel||'')}">${esc(h.riskLevel||'Not rated')}</span></td></tr>`).join('')}</tbody></table>`;}else{$(dest).innerHTML=items.map(x=>`<div class="record" onclick="edit('${type.slice(0,-1)}','${esc(x.id)}')"><div><strong>${esc(x.id)}</strong><small>${esc(x.description)}</small></div><span>Edit →</span></div>`).join('')||'<div class="empty">No records found.</div>'}}
+function opts(type,selected=[]){return all(type).map(x=>`<label><input type="checkbox" value="${esc(x.id)}" ${selected.includes(x.id)?'checked':''}> <span><b>${esc(x.id)}</b> ${esc(x.description)}</span></label>`).join('')||'<span class="hint">Add records in the relevant section first.</span>'}
+function newRecord(type){let prefix={hazard:'',cause:'C',mitigation:'M',impact:'I'}[type];let items=all(type);let nums=items.map(x=>parseInt(String(x.id).replace(/\D/g,''))||0);let id=type==='hazard'?String(Math.max(0,...nums)+1):prefix+String(Math.max(0,...nums)+1).padStart(2,'0');let x={id,description:''};if(type==='hazard')Object.assign(x,{causeIds:[],mitigationIds:[],impactIds:[],hazardImpacts:[],riskLevel:''});if(type==='cause')x.mitigationIds=[];if(type==='mitigation')x.implementationClass='organisation';if(type==='impact')x.severity='';items.push(x);persist();show(type==='hazard'?'hazards':type+'s');edit(type,id)}
+function edit(type,id){current={type,id};let item=all(type).find(x=>x.id===id);if(!item)return;let dest=$(type==='hazard'?'hazEditor':type+'Editor');if(!dest)return;let title=type[0].toUpperCase()+type.slice(1);let html=`<div class="editor"><div class="panelhead"><h2>Edit ${title} · ${esc(item.id)}</h2><button class="danger" onclick="deleteRecord('${type}','${esc(id)}')">Delete</button></div><div class="field"><label>Description</label><textarea id="eDesc" class="tall">${esc(item.description)}</textarea></div>`;
+if(type==='hazard'){html+=`<div class="two"><div class="field"><label>Causes linked to this hazard</label><div class="checks" id="eCauses">${opts('causes',item.causeIds)}</div></div><div class="field"><label>Mitigations linked to this hazard</label><div class="checks" id="eMits">${opts('mitigations',item.mitigationIds)}</div></div><div class="field"><label>Impacts linked to this hazard</label><div class="checks" id="eImpacts">${opts('impacts',item.impactIds)}</div></div><div><div class="field"><label>Overall risk level (CSO-reviewed)</label><select id="eRisk">${['','Acceptable','Tolerable','Undesirable','Intolerable'].map(v=>`<option ${item.riskLevel===v?'selected':''} value="${v}">${v||'Not rated'}</option>`).join('')}</select></div><div class="hint">Risk is not calculated automatically. Use your organisation's approved risk matrix.</div></div></div><div class="field"><label>Impact likelihood ratings</label><div id="eLikelihood">${(item.hazardImpacts||[]).map(hi=>`<div class="two" style="align-items:center;margin:7px 0"><div>${esc(hi.impactID)} · ${esc(refName('impacts',hi.impactID)?.description||'Missing impact')}</div><select data-impact="${esc(hi.impactID)}"><option>Rare</option><option>Unlikely</option><option>Possible</option><option>Likely</option><option>Almost Certain</option></select></div>`).join('')||'<span class="hint">Select impacts above, then save to set likelihood.</span>'}</div></div>`}
+if(type==='cause')html+=`<div class="field"><label>Mitigations addressing this cause</label><div class="checks" id="eMits">${opts('mitigations',item.mitigationIds)}</div></div>`;
+if(type==='mitigation')html+=`<div class="field"><label>Implementation class</label><select id="eClass"><option value="organisation" ${item.implementationClass==='organisation'?'selected':''}>Organisation / practice</option><option value="supplier" ${item.implementationClass==='supplier'?'selected':''}>Supplier</option><option value="shared" ${item.implementationClass==='shared'?'selected':''}>Shared</option></select></div>`;
+if(type==='impact')html+=`<div class="field"><label>Severity</label><select id="eSeverity"><option value="">Not rated</option>${['Negligible','Minor','Significant','Considerable','Major','Catastrophic'].map(v=>`<option ${item.severity===v?'selected':''}>${v}</option>`).join('')}</select></div>`;
+html+=`<div class="toolbar"><button class="primary" onclick="saveRecord('${type}','${esc(id)}','${dest.id}')">Save changes</button><button onclick="$('${dest.id}').innerHTML=''">Close</button></div></div>`;dest.innerHTML=html;
+(item.hazardImpacts||[]).forEach(hi=>{let s=dest.querySelector(`[data-impact="${CSS.escape(hi.impactID)}"]`);if(s)s.value=hi.likelihood||'Possible'});dest.scrollIntoView({behavior:'smooth',block:'start'})}
+function checked(id){return [...$(id).querySelectorAll('input:checked')].map(x=>x.value)}
+function saveRecord(type,id,rootId){let root=$(rootId);if(!root)return;let q=s=>root.querySelector(s);let checkedIn=sel=>[...root.querySelectorAll(sel+' input:checked')].map(x=>x.value);let x=all(type).find(a=>a.id===id);if(!x)return;x.description=q('#eDesc').value.trim();if(type==='hazard'){x.causeIds=checkedIn('#eCauses');x.mitigationIds=checkedIn('#eMits');x.impactIds=checkedIn('#eImpacts');x.riskLevel=q('#eRisk').value;let old=x.hazardImpacts||[];x.hazardImpacts=x.impactIds.map(impactID=>({impactID,likelihood:old.find(a=>a.impactID===impactID)?.likelihood||'Possible'}));root.querySelectorAll('#eLikelihood select').forEach(s=>{let a=x.hazardImpacts.find(z=>z.impactID===s.dataset.impact);if(a)a.likelihood=s.value})}if(type==='cause')x.mitigationIds=checkedIn('#eMits');if(type==='mitigation')x.implementationClass=q('#eClass').value;if(type==='impact')x.severity=q('#eSeverity').value;persist();toast('Changes saved');renderList(type==='hazard'?'hazards':type+'s');renderOverview();edit(type,id)}
+function deleteRecord(type,id){if(!confirm(`Delete ${type} ${id}? Any links to it will also be removed.`))return;let arr=all(type);let i=arr.findIndex(x=>x.id===id);if(i>=0)arr.splice(i,1);if(type==='hazard'){}else for(const h of db.project.hazards){let key={cause:'causeIds',mitigation:'mitigationIds',impact:'impactIds'}[type];h[key]=(h[key]||[]).filter(v=>v!==id);if(type==='impact')h.hazardImpacts=(h.hazardImpacts||[]).filter(v=>v.impactID!==id)}if(type==='mitigation')for(const c of db.causes)c.mitigationIds=(c.mitigationIds||[]).filter(v=>v!==id);persist();$(''+(type==='hazard'?'hazEditor':type+'Editor')).innerHTML='';renderList(type==='hazard'?'hazards':type+'s');renderOverview();toast('Record deleted')}
+function renderProject(){$('pTitle').value=db.project.title||'';$('pCSO').value=db.project.safetyOfficer||'';$('pDesc').value=db.project.description||'';$('reportInputs').innerHTML=INPUTS.map(([k,l,p])=>`<div class="field"><label>${esc(l)}</label><textarea id="ri_${k}" placeholder="${esc(p)}">${esc(reportInputs[k]||'')}</textarea></div>`).join('')}
+function saveProject(){db.project.title=$('pTitle').value.trim();db.project.safetyOfficer=$('pCSO').value.trim();db.project.description=$('pDesc').value.trim();persist();renderOverview();toast('Project details saved')}
+function saveReportInputs(){INPUTS.forEach(([k])=>reportInputs[k]=$('ri_'+k).value.trim());persist();toast('Report inputs saved')}
+function newBlankProject(){
+ if(!confirm('Start a new blank project?\n\nThis clears ALL hazards, causes, mitigations, impacts, project details and report inputs from this workspace.'))return;
+ if(confirm('Download a backup of the current project before it is cleared?\n\nOK = download backup, Cancel = skip.'))exportJSON();
+ let name=prompt('Name for the new project (you can change this later in Project details):','');
+ if(name===null)return;
+ db={project:{title:(name||'').trim()||'Untitled project',description:'',safetyOfficer:'',compliance:{items:{},signOff:false,signOffDate:'',signOffBy:''},hazards:[]},causes:[],mitigations:[],impacts:[]};
+ reportInputs={};current={type:null,id:null};
+ persist();show('project');toast('New blank project created');
+}
+
+const COMPLIANCE=[
+{k:'dtac',sec:'essential',t:'Digital Technology Assessment Criteria (DTAC) – complete evidence pack',i:'NHS England baseline assessment covering clinical safety, data protection, technical security, interoperability and usability/accessibility. Ask for the supplier\u2019s completed evidence pack.'},
+{k:'dcb0129',sec:'essential',t:'Clinical Safety Case & Hazard Log (DCB0129)',i:'The manufacturer\u2019s clinical risk management documents. Review them as an input to your own DCB0160 assessment.'},
+{k:'cso',sec:'essential',t:'Named Clinical Safety Officer (CSO)',i:'The supplier should name its CSO, a suitably qualified and experienced clinician, who approves the safety documentation.'},
+{k:'cep',sec:'essential',t:'Cyber Essentials Plus certificate',i:'Independently verified cyber security certification. Check the certificate is in date and its scope covers the product.'},
+{k:'pentest',sec:'essential',t:'Pen-test report (CREST-accredited ideally)',i:'Independent penetration test. Check the date and scope, and that critical and high findings were remediated.'},
+{k:'dspt',sec:'essential',t:'Data Security & Protection Toolkit (DSPT) submission',i:'Annual self-assessment against data security standards for organisations handling NHS patient data. Check current status.'},
+{k:'gdpr',sec:'essential',t:'GDPR compliance & Data Processing Agreement',i:'Confirm UK GDPR compliance and a signed Data Processing Agreement. Check sub-processors and where data is stored.'},
+{k:'mhra',sec:'essential',t:'Medical Device classification (MHRA)',i:'Confirm whether the software is a medical device and, if so, its classification and marking.',link:'https://assets.publishing.service.gov.uk/media/64a7d22d7a4c230013bba33c/Medical_device_stand-alone_software_including_apps__including_IVDMDs_.pdf'},
+{k:'benefit',sec:'desirable',t:'Real-world benefit evidence in your setting',i:'Evidence the product delivers benefit in a comparable setting, such as evaluations or case studies.'},
+{k:'economic',sec:'desirable',t:'Economic justification & workforce impact',i:'Cost/benefit justification, including the effect on workforce time and workload.'}
+];
+const COMP_STATUS=['Not checked','Requested','Received','Reviewed – satisfactory','Concerns raised','Not applicable'];
+const COMP_DONE=['Reviewed – satisfactory','Not applicable'];
+function comp(){const p=db.project;p.compliance=p.compliance||{};p.compliance.items=p.compliance.items||{};return p.compliance}
+function compItem(k){return comp().items[k]||{status:'Not checked',evidence:''}}
+function compEssentialDone(){return COMPLIANCE.filter(c=>c.sec==='essential'&&COMP_DONE.includes(compItem(c.k).status)).length}
+function compActive(){const c=comp();return !!c.signOff||COMPLIANCE.some(x=>{const i=c.items[x.k];return i&&((i.status&&i.status!=='Not checked')||(i.evidence||'').trim())})}
+function compStatus(){const c=comp(),n=COMPLIANCE.filter(x=>x.sec==='essential').length,d=compEssentialDone();
+ if(c.signOff)return 'Yes – vendor compliance review complete and signed off'+(c.signOffDate?' on '+c.signOffDate:'')+(c.signOffBy?' by '+c.signOffBy:'');
+ return compActive()?`In progress – ${d} of ${n} minimum essential requirements reviewed (not yet signed off)`:'Not checked'}
+function updateCompCount(){const el=$('compCount');if(el)el.textContent=compEssentialDone()+'/'+COMPLIANCE.filter(c=>c.sec==='essential').length}
+function compTable(h='h3'){
+ const row=c=>{const i=compItem(c.k);return `<tr><td>${esc(c.t)}</td><td>${esc(i.status||'Not checked')}</td><td>${esc(i.evidence||'')}</td></tr>`};
+ const grp=(sec,title)=>`<tr><th colspan="3" style="text-align:left">${title}</th></tr>`+COMPLIANCE.filter(c=>c.sec===sec).map(row).join('');
+ const n=COMPLIANCE.filter(x=>x.sec==='essential').length;
+ return `<${h}>Vendor compliance checklist</${h}><p>${compEssentialDone()} of ${n} minimum essential requirements reviewed. Review status: ${esc(compStatus())}.</p><table><thead><tr><th>Requirement</th><th>Status</th><th>Evidence / reference</th></tr></thead><tbody>${grp('essential','Minimum essential requirements')}${grp('desirable','Desirable vendor evidence')}</tbody></table>`}
+function setComp(k,f,v){const c=comp();c.items[k]=c.items[k]||{status:'Not checked',evidence:''};c.items[k][f]=v;persist();renderCompliance()}
+function setSignOff(on){const c=comp();c.signOff=!!on;c.signOffDate=on?new Date().toLocaleDateString('en-GB'):'';if(!on)c.signOffBy='';persist();renderCompliance()}
+function setSignOffBy(v){comp().signOffBy=v.trim();persist();renderCompliance()}
+function renderCompliance(){
+ const c=comp(),n=COMPLIANCE.filter(x=>x.sec==='essential').length,d=compEssentialDone();
+ const row=x=>{const i=compItem(x.k);return `<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #edf1f2"><div style="flex:2 1 280px"><b>${esc(x.t)}</b> <details style="display:inline"><summary style="display:inline;cursor:pointer" title="More information">ℹ️</summary><div class="hint">${esc(x.i)}${x.link?` <a href="${esc(x.link)}" target="_blank" rel="noopener">MHRA guidance</a>`:''}</div></details></div><select style="flex:1 1 180px" onchange="setComp('${x.k}','status',this.value)">${COMP_STATUS.map(v=>`<option ${i.status===v?'selected':''}>${v}</option>`).join('')}</select><input style="flex:2 1 240px" placeholder="Evidence / reference (document, date, location)" value="${esc(i.evidence||'')}" onchange="setComp('${x.k}','evidence',this.value)"></div>`};
+ $('compBody').innerHTML=`<div class="editor"><h2>1. Minimum essential requirements</h2><div class="hint">${d} of ${n} reviewed</div>${COMPLIANCE.filter(x=>x.sec==='essential').map(row).join('')}</div><div class="editor"><h2>2. Desirable vendor evidence</h2>${COMPLIANCE.filter(x=>x.sec==='desirable').map(row).join('')}</div><div class="editor"><h2>Sign-off</h2><label style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" ${c.signOff?'checked':''} onchange="setSignOff(this.checked)"> <span>I confirm the vendor compliance review is complete and I am happy to sign off.</span></label>${c.signOff?`<div class="field" style="margin-top:10px"><label>Signed off by (name and role)</label><input value="${esc(c.signOffBy||'')}" onchange="setSignOffBy(this.value)"><div class="hint">Date recorded: ${esc(c.signOffDate||'')}</div></div>`:''}${c.signOff&&d<n?`<div class="notice" style="margin-top:10px">${n-d} minimum essential requirement(s) are not yet marked as reviewed or not applicable. The reports will still show the sign-off, alongside the checklist status.</div>`:''}</div>`;
+ updateCompCount()}
+
+/* ---------- CSV import ---------- */
+const CSV_LIST={hazard:'hazards',cause:'causes',mitigation:'mitigations',impact:'impacts'};
+const CSV_PREFIX={hazard:'',cause:'C',mitigation:'M',impact:'I'};
+const CSV_RISK=['Acceptable','Tolerable','Undesirable','Intolerable'];
+const CSV_LIK=['Rare','Unlikely','Possible','Likely','Almost Certain'];
+const CSV_SEV=['Negligible','Minor','Significant','Considerable','Major','Catastrophic'];
+const CSV_TEMPLATES={
+ hazard:[['Hazard ID','Hazard','Cause IDs','Mitigation IDs','Impact IDs','Likelihood','Residual risk'],['','Example: describe the hazard here','C01; C02','M01','I01','I01: Possible','Acceptable']],
+ cause:[['Cause ID','Cause','Mitigation IDs'],['','Example: describe the cause here','M01; M02']],
+ mitigation:[['Mitigation ID','Mitigation','Implementation class'],['','Example: describe the mitigation here','organisation']],
+ impact:[['Impact ID','Impact','Severity'],['','Example: describe the impact here','Significant']]
+};
+let csvType=null;
+function csvKey(h){return String(h||'').toLowerCase().replace(/[^a-z0-9]/g,'')}
+function csvAliases(t){
+ const a={id:['id','ref','reference','code',t+'id'],description:['description','desc',t,t+'description']};
+ if(t==='mitigation')a.description.push('practicelevelmitigation');
+ if(t==='hazard'){a.causeIds=['causeids'];a.mitigationIds=['mitigationids'];a.impactIds=['impactids'];a.likelihood=['likelihood','impactlikelihood'];a.riskLevel=['residualrisk','risklevel','overallrisklevel'];}
+ if(t==='cause')a.mitigationIds=['mitigationids'];
+ if(t==='mitigation')a.implementationClass=['implementationclass','class'];
+ if(t==='impact')a.severity=['severity'];
+ return a}
+function parseCSV(text){
+ text=String(text).replace(/^\ufeff/,'');
+ const first=text.split(/\r?\n/)[0]||'',cnt=c=>first.split(c).length-1;
+ let d=',';if(cnt('\t')>cnt(',')&&cnt('\t')>=cnt(';'))d='\t';else if(cnt(';')>cnt(','))d=';';
+ const rows=[];let row=[],f='',q=false;
+ for(let i=0;i<text.length;i++){const c=text[i];
+  if(q){if(c==='"'){if(text[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+  else if(c==='"')q=true;
+  else if(c===d){row.push(f);f=''}
+  else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;row.push(f);f='';rows.push(row);row=[]}
+  else f+=c}
+ if(f!==''||row.length){row.push(f);rows.push(row)}
+ return rows.filter(r=>r.some(x=>String(x).trim()!==''))}
+function csvCanon(t,raw){
+ raw=String(raw||'').trim();if(!raw)return '';
+ const m=raw.match(/^([A-Za-z]*)0*(\d+)$/),p=CSV_PREFIX[t];
+ if(m&&m[1].toUpperCase()===p){const n=parseInt(m[2],10);return t==='hazard'?String(n):p+String(n).padStart(2,'0')}
+ return raw}
+function csvResolve(t,raw,items){
+ const c=csvCanon(t,raw);if(!c)return null;
+ const hit=items.find(x=>String(x.id).toLowerCase()===c.toLowerCase());return hit?hit.id:null}
+function csvNextId(t,items){
+ const nums=items.map(x=>parseInt(String(x.id).replace(/\D/g,''))||0),n=Math.max(0,...nums)+1;
+ return t==='hazard'?String(n):CSV_PREFIX[t]+String(n).padStart(2,'0')}
+function csvPick(t){csvType=t;const el=$('csvIn');el.value='';el.click()}
+function csvTemplate(t){
+ const csv=CSV_TEMPLATES[t].map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+ download(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),'import_template_'+CSV_LIST[t]+'.csv')}
+function csvPlan(t,text){
+ const rows=parseCSV(text),warn=[];
+ if(rows.length<2)return {error:'The file needs a header row and at least one data row.'};
+ const alias=csvAliases(t),head=rows[0].map(csvKey),col={};
+ for(const f in alias){const i=head.findIndex(h=>alias[f].includes(h));if(i>=0)col[f]=i}
+ if(col.description===undefined)return {error:'No description column found. Expected a column headed "'+CSV_TEMPLATES[t][0][1]+'" or "Description".'};
+ const clone=JSON.parse(JSON.stringify(all(t)));
+ const refs={cause:all('causes'),mitigation:all('mitigations'),impact:all('impacts')};
+ let added=0,updated=0,skipped=0;const get=(r,f)=>col[f]===undefined?'':String(r[col[f]]??'').trim();
+ const list=v=>String(v).split(/[;,|\s]+/).map(x=>x.trim()).filter(Boolean);
+ const resolveList=(rt,v,ln,label)=>{const out=[];for(const raw of list(v)){const id=csvResolve(rt,raw,refs[rt]);if(id){if(!out.includes(id))out.push(id)}else warn.push(`Row ${ln}: ${label} "${raw}" not found, so the link was skipped. Import ${CSV_LIST[rt]} first.`)}return out};
+ rows.slice(1).forEach((r,n)=>{
+  const ln=n+2,desc=get(r,'description');
+  if(!desc){skipped++;warn.push(`Row ${ln}: no description, row skipped.`);return}
+  if(/^example\b/i.test(desc)){skipped++;return}
+  const rawId=get(r,'id');let id=rawId?csvCanon(t,rawId):'';
+  let rec=id?clone.find(x=>String(x.id).toLowerCase()===id.toLowerCase()):null,isNew=!rec;
+  if(isNew){if(!id)id=csvNextId(t,clone);
+   rec={id,description:''};
+   if(t==='hazard')Object.assign(rec,{causeIds:[],mitigationIds:[],impactIds:[],hazardImpacts:[],riskLevel:''});
+   if(t==='cause')rec.mitigationIds=[];if(t==='mitigation')rec.implementationClass='organisation';if(t==='impact')rec.severity='';
+   clone.push(rec);added++}else updated++;
+  rec.description=desc;
+  if(t==='hazard'||t==='cause'){const v=get(r,'mitigationIds');if(v)rec.mitigationIds=resolveList('mitigation',v,ln,'mitigation')}
+  if(t==='hazard'){
+   let v=get(r,'causeIds');if(v)rec.causeIds=resolveList('cause',v,ln,'cause');
+   v=get(r,'impactIds');if(v)rec.impactIds=resolveList('impact',v,ln,'impact');
+   const old=rec.hazardImpacts||[],pairs={};let single='';
+   const lk=get(r,'likelihood');
+   if(lk){for(const part of lk.split(/[|;]+/).map(x=>x.trim()).filter(Boolean)){
+     const m=part.match(/^(.+?)\s*:\s*(.+)$/);
+     if(m){const iid=csvResolve('impact',m[1],refs.impact),val=CSV_LIK.find(x=>x.toLowerCase()===m[2].trim().toLowerCase());
+      if(iid&&val)pairs[iid]=val;else warn.push(`Row ${ln}: likelihood "${part}" not recognised.`)}
+     else{const val=CSV_LIK.find(x=>x.toLowerCase()===part.toLowerCase());if(val)single=val;else warn.push(`Row ${ln}: likelihood "${part}" not recognised.`)}}}
+   rec.hazardImpacts=(rec.impactIds||[]).map(impactID=>({impactID,likelihood:pairs[impactID]||single||old.find(a=>a.impactID===impactID)?.likelihood||'Possible'}));
+   const rk=get(r,'riskLevel');
+   if(rk&&!/^not rated$/i.test(rk)){const val=CSV_RISK.find(x=>x.toLowerCase()===rk.replace(/^\d+\s*-\s*/,'').toLowerCase());if(val)rec.riskLevel=val;else warn.push(`Row ${ln}: risk level "${rk}" not recognised (use ${CSV_RISK.join(', ')}).`)}}
+  if(t==='mitigation'){const v=get(r,'implementationClass').toLowerCase();
+   if(v){if(/supplier/.test(v))rec.implementationClass='supplier';else if(/shared/.test(v))rec.implementationClass='shared';else if(/org|practice/.test(v))rec.implementationClass='organisation';else warn.push(`Row ${ln}: implementation class "${v}" not recognised (use organisation, supplier or shared).`)}}
+  if(t==='impact'){const v=get(r,'severity');
+   if(v&&!/^not rated$/i.test(v)){const val=CSV_SEV.find(x=>x.toLowerCase()===v.toLowerCase());if(val)rec.severity=val;else warn.push(`Row ${ln}: severity "${v}" not recognised (use ${CSV_SEV.join(', ')}).`)}}
+ });
+ return {clone,added,updated,skipped,warn}}
+function importCSV(e){
+ const f=e.target.files[0],t=csvType;if(!f||!t)return;
+ const r=new FileReader();
+ r.onload=()=>{try{
+  const plan=csvPlan(t,r.result);
+  if(plan.error){alert('Could not import this CSV: '+plan.error);return}
+  const w=plan.warn.length?`\n\n${plan.warn.length} warning(s):\n`+plan.warn.slice(0,8).map(x=>'• '+x).join('\n')+(plan.warn.length>8?`\n…and ${plan.warn.length-8} more`:''):'';
+  if(!plan.added&&!plan.updated){alert('Nothing to import from this file.'+w);return}
+  if(!confirm(`Import from “${f.name}”?\n\n• ${plan.added} new ${CSV_LIST[t]}\n• ${plan.updated} existing updated (matched by ID)\n• ${plan.skipped} row(s) skipped\n\nRecords not in the file are left unchanged. Blank cells leave existing values unchanged.${w}`))return;
+  if(t==='hazard')db.project.hazards=plan.clone;else db[CSV_LIST[t]]=plan.clone;
+  persist();renderList(CSV_LIST[t]);renderOverview();
+  toast(`Imported: ${plan.added} new, ${plan.updated} updated`);
+ }catch(err){alert('Could not import this CSV: '+err.message)}};
+ r.readAsText(f)}
+function textOrNA(v){return v&&v.trim()?esc(v):'<em>Not provided — complete this section before approval.</em>'}
+
+function hazardRisk(h){return h.riskLevel||'Not rated'}
+function hazardRatings(h){
+ let im=(h.impactIds||[]).map(id=>refName('impacts',id)).filter(Boolean);
+ let hi=h.hazardImpacts||[];
+ if(!im.length)return '<li>No impact linked</li>';
+ return im.map(i=>{let a=hi.find(x=>x.impactID===i.id);return `<li><b>${esc(i.id)} – ${esc(i.severity||'Severity not rated')}</b>; likelihood: ${esc(a?.likelihood||'Not rated')}; residual risk: ${esc(hazardRisk(h))}</li>`}).join('');
+}
+function renderHazardSummary(){
+ let hs=db.project.hazards||[];
+ let hazardRows=hs.map(h=>`<tr><td>${esc(h.id)}</td><td>${esc(h.description)}</td><td>${esc(hazardRisk(h))}</td></tr>`).join('');
+ let mitRows=db.mitigations.map(m=>`<tr><td>${esc(m.id)}</td><td>${esc(m.description)}</td></tr>`).join('');
+ let details=hs.map(h=>{
+  let causes=(h.causeIds||[]).map(id=>refName('causes',id)).filter(Boolean);
+  let mits=(h.mitigationIds||[]).map(id=>refName('mitigations',id)).filter(Boolean);
+  let impacts=(h.impactIds||[]).map(id=>refName('impacts',id)).filter(Boolean);
+  return `<div class="reporthazard"><h3>${esc(h.id)}: ${esc(h.description)} <span class="risk ${esc(hazardRisk(h))}">Risk: ${esc(hazardRisk(h))}</span></h3>
+  <b>Potential Causes of Hazard</b><ul>${causes.map(c=>`<li>${esc(c.description)}</li>`).join('')||'<li>None linked</li>'}</ul>
+  <b>All Related Mitigations</b><ul>${mits.map(m=>`<li><b>${esc(m.id)}:</b> ${esc(m.description)}</li>`).join('')||'<li>None linked</li>'}</ul>
+  <b>Potential Impacts</b><ul>${impacts.map(i=>`<li><b>${esc(i.id)} (${esc(i.severity||'Severity not rated')}):</b> ${esc(i.description)}</li>`).join('')||'<li>None linked</li>'}</ul>
+  <b>Risk Assessment</b><ul>${hazardRatings(h)}</ul></div>`;
+ }).join('');
+ $('hazSummaryPreview').innerHTML=`<div class="dochead"><div class="eyebrow">Clinical safety documentation · DCB0160</div><h1>Hazard Summary Report</h1><h2>${esc(db.project.title||'Untitled project')} DCB 0160 template</h2><p>Generated: ${new Date().toLocaleString('en-GB')}</p></div>
+ <h2>Hazard Summary</h2><table><thead><tr><th>ID</th><th>Description</th><th>Highest Risk</th></tr></thead><tbody>${hazardRows||'<tr><td colspan="3">No hazards recorded yet.</td></tr>'}</tbody></table>
+ <h2>Mitigation Summary</h2><table><thead><tr><th>Code</th><th>Practice-level mitigation</th></tr></thead><tbody>${mitRows||'<tr><td colspan="2">No mitigations recorded yet.</td></tr>'}</tbody></table>
+ ${compTable('h2')}
+ <h2>Hazard Details</h2>${details||'<p>No hazards recorded yet.</p>'}
+ <div class="notice"><b>Review note:</b> Generated working document. Risk ratings and all linked causes, mitigations and impacts must be checked by the Clinical Safety Officer before approval.</div>`;
+}
+function renderCaseReport(){
+ let p=db.project,hs=p.hazards||[];
+ let rows=hs.map(h=>`<tr><td>${esc(h.description)}</td><td>${esc(({Acceptable:'2 - Acceptable',Undesirable:'3 - Undesirable',Tolerable:'',Intolerable:''})[hazardRisk(h)]||hazardRisk(h))}</td></tr>`).join('');
+ const val=(k, fallback='')=>reportInputs[k]?.trim()?esc(reportInputs[k]):(fallback?esc(fallback):'<em>Not provided — complete this section before approval.</em>');
+ {
+  const gen=new Date().toLocaleString('en-GB');
+  const has=k=>!!(reportInputs[k]&&reportInputs[k].trim());
+  const nc=(k,m)=>has(k)?esc(reportInputs[k]):'Not completed yet. '+m;
+  const brows=hs.length?rows:'<tr><td colspan="2">No hazards recorded yet.</td></tr>';
+  const extras=[['residualRisk','Residual risk and acceptance rationale'],['actions','Outstanding safety actions'],['approval','Clinical safety approval / sign-off']].filter(([k])=>has(k)).map(([k,l])=>`<h3>${l}</h3><p>${esc(reportInputs[k])}</p>`).join('');
+  $('caseReportPreview').innerHTML=`<div class="dochead"><h1>Clinical Safety Case Report</h1><h2>System: ${esc(p.title||'Untitled project')}</h2><p>Generated: ${gen}</p></div>
+  <h2>Contents</h2><ul><li>1. Introduction</li><li>2. Purpose</li><li>3. Description of the proposed new system</li><li>4. Clinical Safety Governance</li><li>5. Hazard Identification</li><li>6. Risk Assessment and Mitigations</li><li>7. Clinical Safety Case Report Conclusion</li></ul>
+  <h2>1. Introduction</h2><p>${val('introduction','This report outlines the clinical safety activities and risk-management outputs.')}</p><p>It is intended to support DCB0160-aligned governance by summarising hazards, assessed risks, and mitigations associated with this deployment.</p>
+  <h2>2. Purpose</h2><ul><li>Report on clinical hazards.</li><li>Summarise the current risk profile and any unresolved areas.</li></ul>${has('purpose')?`<p>${esc(reportInputs.purpose)}</p>`:''}
+  <h2>3. Description of the proposed new system</h2><p>${p.description&&p.description.trim()?esc(p.description):'Not completed yet. Add a system description in Project Details.'}</p>${has('extraDocs')?`<p>${esc(reportInputs.extraDocs)}</p>`:''}
+  <h2>4. Clinical Safety Governance</h2><p><b>Clinical Safety Officer:</b> ${p.safetyOfficer&&p.safetyOfficer.trim()?esc(p.safetyOfficer):'Not completed yet.'}</p><p><b>Vendor compliance review checked:</b> ${esc(compStatus())}</p>${has('vendorReview')?`<p>${esc(reportInputs.vendorReview)}</p>`:''}${has('governance')?`<p>${esc(reportInputs.governance)}</p>`:''}${compTable('h3')}
+  <h2>5. Hazard Identification</h2><p>A hazard is any potential source of harm associated with use of the system. Residual risk is the risk level remaining after planned mitigations are applied.</p><p>Residual risk in this report is derived using the NHS-style clinical risk matrix approach: combining severity and likelihood to produce a 1-5 risk score, then categorising that score into acceptable, undesirable, or unacceptable levels in line with DCB clinical safety guidance. NHS Clinical Safety documentation: https://digital.nhs.uk/services/clinical-safety/documentation</p><p>The hazards currently present in this case and their highest recorded residual risk ratings are listed below.</p>
+  <table><thead><tr><th>Hazard</th><th>Level of residual risk after mitigations</th></tr></thead><tbody>${brows}</tbody></table>
+  <h2>6. Risk Assessment and Mitigations</h2><p>${nc('riskManagement','Add Section 6 content in Case Report Inputs.')}</p>
+  <h2>7. Clinical Safety Case Report Conclusion</h2><p><b>Recommended to be implemented by the Clinical Safety Officer (subject to mitigations being enacted):</b> ${has('conclusion')?esc(reportInputs.conclusion):'No / not confirmed'}</p><p>${nc('section8','Add Section 8 content in Case Report Inputs.')}</p>${extras}
+  <div class="notice"><b>Review note:</b> This generated report is a working draft. The named Clinical Safety Officer must review the hazard log, evidence, local arrangements, mitigations and residual risks before making an implementation recommendation or approval decision.</div>`;
+ }
+}
+function renderHazardLog(){
+ let hs=db.project.hazards||[];
+ let hazardRows=hs.map(h=>{
+  let causes=(h.causeIds||[]).map(id=>refName('causes',id)).filter(Boolean);
+  let mits=(h.mitigationIds||[]).map(id=>refName('mitigations',id)).filter(Boolean);
+  let impacts=(h.impactIds||[]).map(id=>refName('impacts',id)).filter(Boolean);
+  let rating=(h.hazardImpacts||[]).map(a=>{let i=refName('impacts',a.impactID);return `${a.impactID}: ${i?.severity||'Not rated'} / ${a.likelihood||'Not rated'}`}).join('; ');
+  return `<tr><td>${esc(h.id)}</td><td>${esc(h.description)}</td><td>${esc(causes.map(x=>x.id).join(', '))}</td><td>${esc(mits.map(x=>x.id).join(', '))}</td><td>${esc(impacts.map(x=>x.id).join(', '))}</td><td>${esc(rating||'Not recorded')}</td><td>${esc(hazardRisk(h))}</td></tr>`;
+ }).join('');
+ let sections=(type,title)=>`<h2>${title}</h2><table><thead><tr><th>ID</th><th>Description</th><th>Severity / implementation</th><th>Linked mitigations / relationships</th></tr></thead><tbody>${all(type).map(x=>{
+  let linked=type==='causes'?(x.mitigationIds||[]).join(', '):type==='mitigations'?db.project.hazards.filter(h=>(h.mitigationIds||[]).includes(x.id)).map(h=>'H'+h.id).join(', '):db.project.hazards.filter(h=>(h.impactIds||[]).includes(x.id)).map(h=>'H'+h.id).join(', ');
+  return `<tr><td>${esc(x.id)}</td><td>${esc(x.description)}</td><td>${esc(x.severity||x.implementationClass||'Not specified')}</td><td>${esc(linked||'None recorded')}</td></tr>`;
+ }).join('')}</tbody></table>`;
+ $('hazLogPreview').innerHTML=`<div class="dochead"><div class="eyebrow">Clinical safety documentation · DCB0160</div><h1>Full Hazard Log</h1><h2>${esc(db.project.title||'Untitled project')}</h2><p>Generated ${new Date().toLocaleString('en-GB')}</p><p>${hs.length} hazards · ${db.causes.length} causes · ${db.mitigations.length} mitigations · ${db.impacts.length} impacts</p></div>
+ <h2>Hazard register and relationships</h2><table><thead><tr><th>Hazard ID</th><th>Hazard description</th><th>Cause IDs</th><th>Mitigation IDs</th><th>Impact IDs</th><th>Severity / likelihood</th><th>Residual risk</th></tr></thead><tbody>${hazardRows||'<tr><td colspan="7">No hazards recorded yet.</td></tr>'}</tbody></table>
+ ${sections('causes','Cause register')}${sections('mitigations','Mitigation register')}${sections('impacts','Impact register')}
+ ${compTable('h2')}<h2>Detailed hazard records</h2>${hs.map(h=>{
+  let causes=(h.causeIds||[]).map(id=>refName('causes',id)).filter(Boolean),mits=(h.mitigationIds||[]).map(id=>refName('mitigations',id)).filter(Boolean),imps=(h.impactIds||[]).map(id=>refName('impacts',id)).filter(Boolean);
+  return `<div class="reporthazard"><h3>H${esc(h.id)} · ${esc(h.description)} <span class="risk ${esc(hazardRisk(h))}">${esc(hazardRisk(h))}</span></h3><b>Causes</b><ul>${causes.map(c=>`<li><b>${esc(c.id)}:</b> ${esc(c.description)}</li>`).join('')||'<li>None linked</li>'}</ul><b>Mitigations</b><ul>${mits.map(m=>`<li><b>${esc(m.id)}:</b> ${esc(m.description)}</li>`).join('')||'<li>None linked</li>'}</ul><b>Impacts and ratings</b><ul>${imps.map(i=>{let a=(h.hazardImpacts||[]).find(x=>x.impactID===i.id);return `<li><b>${esc(i.id)} – Severity: ${esc(i.severity||'Not rated')}; Likelihood: ${esc(a?.likelihood||'Not rated')}</b> — ${esc(i.description)}</li>`}).join('')||'<li>None linked</li>'}</ul><p><b>Residual risk:</b> ${esc(hazardRisk(h))}</p></div>`;
+ }).join('')}
+ <div class="notice">Risk levels are reproduced from the project data and are not recalculated. Any unassessed or inconsistent ratings should be reviewed by the Clinical Safety Officer.</div>`;
+}
+function printOutput(which){
+ const ids=['hazSummary','caseReport','hazLog'];
+ ids.forEach(id=>{const sec=$('page-'+id);if(id===which)sec.classList.remove('hidden');else sec.classList.add('hidden')});
+ window.print();
+ setTimeout(()=>{ids.forEach(id=>{if(id!==which)$('page-'+id).classList.add('hidden')})},300);
+}
+function exportHazardCSV(){
+ const rows=[['Hazard ID','Hazard','Cause IDs','Causes','Mitigation IDs','Mitigations','Impact IDs','Impacts','Severity','Likelihood','Residual risk']];
+ for(const h of db.project.hazards){
+  const causes=(h.causeIds||[]).map(id=>refName('causes',id)).filter(Boolean),mits=(h.mitigationIds||[]).map(id=>refName('mitigations',id)).filter(Boolean),imps=(h.impactIds||[]).map(id=>refName('impacts',id)).filter(Boolean);
+  const sev=imps.map(i=>i.id+': '+(i.severity||'Not rated')).join(' | '),lik=(h.hazardImpacts||[]).map(a=>a.impactID+': '+(a.likelihood||'Not rated')).join(' | ');
+  rows.push([h.id,h.description,causes.map(x=>x.id).join('; '),causes.map(x=>x.description).join('; '),mits.map(x=>x.id).join('; '),mits.map(x=>x.description).join('; '),imps.map(x=>x.id).join('; '),imps.map(x=>x.description).join('; '),sev,lik,hazardRisk(h)]);
+ }
+ const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+ download(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),(db.project.title||'clinical-safety').replace(/[^a-z0-9-_]+/gi,'_')+'_full_hazard_log.csv');
+}
+function exportJSON(){let backup={...db,reportInputs};let blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});download(blob,(db.project.title||'clinical-safety-project').replace(/[^a-z0-9-_]+/gi,'_')+'_workspace.json')}
+function download(blob,name){let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function importJSON(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=normalise(JSON.parse(r.result));if(!confirm(`Replace the current workspace with “${d.project.title||'Untitled project'}”? Export a backup first if needed.`))return;db=d;reportInputs=d.reportInputs||{};persist();show('overview');toast('Project imported successfully')}catch(err){alert('Could not import this file: '+err.message)}e.target.value=''};r.readAsText(f)}
+load();renderOverview();
+</script><input type="file" id="csvIn" accept=".csv,.txt,text/csv" style="display:none" onchange="importCSV(event)"></body></html>
